@@ -1,0 +1,191 @@
+{
+    "menu": [
+        {
+            "title": "Fichas de lectura",
+            "home": "Inicio",
+            "fiches": "Fichas",
+            "admin": "Administración"
+        }
+    ],
+    "home": [
+        {
+            "title": "Cree, administre y comparta sus fichas de lectura"
+        }
+    ],
+    "login": [
+        {
+            "salutation": "Usted ha ingresado como ",
+            "logout": "Salir",
+            "loginform": {
+                "username": {
+                    "label": "username",
+                    "placeholder": "usuario (email)"
+                },
+                "password": {
+                    "label": "password",
+                    "placeholder": "clave"
+                },
+                "submit": "Ingresar"
+            }
+        }
+    ],
+    "stats": [
+        {
+            "title": "Información del sistema",
+            "table": {
+                "propertyOne": "Número de fichas",
+                "propertyTwo": "Número de comentarios"
+            }
+        }
+    ],
+    "admin": [
+        {
+            "title": "Bienvenido administrador. Seleccione por favor que quiere hacer:",
+            "adduser": {
+                "title": "Adicionar nuevo usuario",
+                "email": "email",
+                "password": "clave",
+                "role": "rol",
+                "submit": "Enviar",
+                "cancel": "Cancelar"
+            },
+            "deletefiche": {
+                "title": "Seleccione una ficha para borrar",
+                "get": "Obtener lista"
+            }
+        }
+    ],
+    "fiches": [
+        {
+            "home": {
+                "title": "Seleccione lo que desea hacer",
+                "new": "Nueva",
+                "list": "Lista",
+                "go": "Ir",
+                "enterid": " | Ingrese id: "
+            },
+            "new": {
+                "title": "Adicionar una nueva ficha",
+                "author": "por: ",
+                "comment": "Comentario ",
+                "addcomment": "Adicionar comentario",
+                "submit": "Enviar",
+                "cancel": "Limpiar",
+                "remove": "Eliminar"
+            },
+            "list": {
+                "title": "Lista de fichas de lectura",
+                "reload": "Recargar",
+                "col1" : "Id",
+                "col2" : "Titulo",
+                "col3" : "Autor(es)"
+            },
+            "details": {
+                "title": "Detalles",
+                "selected": "Ficha seleccionada",
+                "comment": "Comentario",
+                "author": "Autor de este comentario",
+                "save": "Guardar",
+                "cancel": "Limpiar",
+                "remove": "Remover",
+                "addcomment": "Adicionar comentario",
+                "docx": "Generar docx (Word)",
+                "download": "Descargar docx",
+                "back": "Atrás"
+            }
+        }
+    ],
+    "bookform": {
+        "title": {
+            "label": "Titulo",
+            "placeholder": "Titulo del libro",
+            "required": "Titulo es requerido"
+        },
+        "subtitle": {
+            "label": "Subtitulo",
+            "placeholder": "Subtitulo del libro",
+            "required": "Subtitulo es requerido"
+        },
+        "author": {
+            "label": "Autor(es)",
+            "placeholder": "Nombre del author(es) (apellido, nombre)",
+            "required": "Autor(es) es requerido"
+        },
+        "year": {
+            "label": "Año de publicación",
+            "placeholder": "0",
+            "required": ""
+        },
+        "editor": {
+            "label": "Editor",
+            "placeholder": "Casa editorial",
+            "required": ""
+        },
+        "collection": {
+            "label": "Colección",
+            "placeholder": "Colección a la que pertenece el libro",
+            "required": ""
+        },
+        "pages": {
+            "label": "Número de páginas",
+            "placeholder": "0",
+            "required": ""
+        },
+        "language": {
+            "label": "Lenguaje",
+            "placeholder": "Lenguaje original del libro",
+            "required": ""
+        }
+    },
+    "commentform": {
+        "aboutauthor": {
+            "label": "Acerca del autor",
+            "placeholder": "Breve reseña sobre el autor(es)"
+        },
+        "genre": {
+            "label": "Género literario",
+            "placeholder": "Género literario"
+        },
+        "context": {
+            "label": "Contexto",
+            "placeholder": "Describa el contexto"
+        },
+        "characters": {
+            "label": "Personajes",
+            "placeholder": "Describa los personajes principales"
+        },
+        "resume": {
+            "label": "Resumen",
+            "placeholder": "Escriba un resumen del libro"
+        },
+        "extraits": {
+            "label": "Fragmentos",
+            "placeholder": "Selección de fragmentos",
+            "required": ""
+        },
+        "appreciation": {
+            "label": "Apreciación",
+            "placeholder": "Escriba aqui su apreciación del libro",
+            "required": ""
+        },
+        "iscompleted": {
+            "label": "¿Está su comentario completo?"
+        }
+    },
+    "messages": [
+        {
+            "success": {
+                "added": "¡Ficha nueva adicionada!",
+                "updated": "¡Ficha actualizada!",
+                "docx": "¡Documento Word creado!",
+                "deleted": "¡Ficha eliminada!"
+            },
+            "notice": {
+                "welcome": "¡Bienvenido!"
+            },
+            "warning": {
+                "wrongcredentials": "¡Credenciales erróneas!"
+            }
+        }
+    ]
+}

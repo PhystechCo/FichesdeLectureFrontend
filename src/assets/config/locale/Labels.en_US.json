@@ -1,0 +1,191 @@
+{
+    "menu": [
+        {
+            "title": "Fiches de lecture",
+            "home": "Home",
+            "fiches": "Fiches",
+            "admin": "Admin"
+        }
+    ],
+    "home": [
+        {
+            "title": "Create, manage and share your fiches de lecture"
+        }
+    ],
+    "login": [
+        {
+            "salutation": "Logged in as ",
+            "logout": "Logout",
+            "loginform": {
+                "username": {
+                    "label": "username",
+                    "placeholder": "username (email)"
+                },
+                "password": {
+                    "label": "password",
+                    "placeholder": "password"
+                },
+                "submit": "Submit"
+            }
+        }
+    ],
+    "stats": [
+        {
+            "title": "System information",
+            "table": {
+                "propertyOne": "Number of fiches de lecture",
+                "propertyTwo": "Number of comments"
+            }
+        }
+    ],
+    "admin": [
+        {
+            "title": "Welcome administrator. Please select what you want to do:",
+            "adduser": {
+                "title": "Add a new user",
+                "email": "email",
+                "password": "password",
+                "role": "role",
+                "submit": "Submit",
+                "cancel": "Cancel"
+            },
+            "deletefiche": {
+                "title": "Select a fiche to delete",
+                "get": "Get list"
+            }
+        }
+    ],
+    "fiches": [
+        {
+            "home": {
+                "title": "Select what you want to do",
+                "new": "New",
+                "list": "List",
+                "go": "Go",
+                "enterid": " | Enter id: "
+            },
+            "new": {
+                "title": "Add a new fiche",
+                "author": "from: ",
+                "comment": "Comment ",
+                "addcomment": "Add comment",
+                "submit": "Send",
+                "cancel": "Clear",
+                "remove": "Remove"
+            },
+            "list": {
+                "title": "Fiche de lecture list",
+                "reload": "Reload",
+                "col1" : "Id",
+                "col2" : "Title",
+                "col3" : "Author(s)"
+            },
+            "details": {
+                "title": "Details",
+                "selected": "Selected fiche",
+                "comment": "Comment",
+                "author": "This comment author",
+                "save": "Save",
+                "cancel": "Clear",
+                "remove": "Remove",
+                "addcomment": "Add comment",
+                "docx": "Generate docx (Word)",
+                "download": "Download docx",
+                "back": "Back"
+            }
+        }
+    ],
+    "bookform": {
+        "title": {
+            "label": "Book title",
+            "placeholder": "Book name",
+            "required": "Title is required"
+        },
+        "subtitle": {
+            "label": "Book subtitle",
+            "placeholder": "Subtitle",
+            "required": "Subtitle is required"
+        },
+        "author": {
+            "label": "Book author",
+            "placeholder": "Author(s) name (last name, first name)",
+            "required": "Author(s) is required"
+        },
+        "year": {
+            "label": "Publication year",
+            "placeholder": "0",
+            "required": ""
+        },
+        "editor": {
+            "label": "Editor",
+            "placeholder": "Editor's name",
+            "required": ""
+        },
+        "collection": {
+            "label": "Collection",
+            "placeholder": "Book's collection",
+            "required": ""
+        },
+        "pages": {
+            "label": "Number of pages",
+            "placeholder": "0",
+            "required": ""
+        },
+        "language": {
+            "label": "Language",
+            "placeholder": "Book's original language",
+            "required": ""
+        }
+    },
+    "commentform": {
+        "aboutauthor": {
+            "label": "About the author",
+            "placeholder": "Write here about the author"
+        },
+        "genre": {
+            "label": "Literary genre",
+            "placeholder": "Literary category"
+        },
+        "context": {
+            "label": "Context",
+            "placeholder": "Write here about the context"
+        },
+        "characters": {
+            "label": "Characters",
+            "placeholder": "Enumerate and describe the main characters"
+        },
+        "resume": {
+            "label": "Summary",
+            "placeholder": "Write here the book's summary"
+        },
+        "extraits": {
+            "label": "Selected fragments",
+            "placeholder": "Book fragments",
+            "required": ""
+        },
+        "appreciation": {
+            "label": "Appreciation",
+            "placeholder": "Write here your personal opinion",
+            "required": ""
+        },
+        "iscompleted": {
+            "label": "Is your comment complete?"
+        }
+    },
+    "messages": [
+        {
+            "success": {
+                "added": "New fiche saved!",
+                "updated": "Fiche updated!",
+                "docx": "Word document created!",
+                "deleted": "Fiche deleted!"
+            },
+            "notice": {
+                "welcome": "Welcome!"
+            },
+            "warning": {
+                "wrongcredentials": "Incorrect credentials!"
+            }
+        }
+    ]
+}

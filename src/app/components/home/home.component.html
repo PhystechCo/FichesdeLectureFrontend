@@ -1,0 +1,17 @@
+<div>
+
+  <h2>{{labels[0].title}}</h2>
+
+  <div class="message-box center">
+
+    <div *ngIf="message">
+      <div class="alert-box {{message.type}}"><span>{{message.text}}</span></div>
+    </div>
+
+  </div>
+
+  <app-login></app-login>
+
+  <app-stats></app-stats>
+
+</div>

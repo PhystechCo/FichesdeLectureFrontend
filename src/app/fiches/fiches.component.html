@@ -1,0 +1,15 @@
+<div>
+
+  <h2>{{labels[0].home.title}}</h2>
+
+  <nav>
+    <a [routerLink]="['./add']">{{labels[0].home.new}}</a>
+    <a [routerLink]="['./list']">{{labels[0].home.list}}</a>{{labels[0].home.enterid}}<input #id size="6">
+    <!--<button (click)="goToFiche(id.value)">{{labels[0].home.go}}</button>-->
+  </nav>
+
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
