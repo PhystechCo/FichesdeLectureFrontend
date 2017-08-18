@@ -1,2 +1,2 @@
 # FichesdeLectureFrontend
-[102] Fiches de lecture frontent / web application
+[102] Fiches de lecture frontend / web application
