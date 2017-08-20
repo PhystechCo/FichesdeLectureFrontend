@@ -168,6 +168,16 @@
             "placeholder": "Escriba aqui su apreciación del libro",
             "required": ""
         },
+        "optional_one": {
+            "label": "Elementos para una critica",
+            "placeholder": "Elementos para una critica",
+            "required": ""
+        },
+        "optional_two": {
+            "label": "Preguntas",
+            "placeholder": "Escriba aqui sus preguntas",
+            "required": ""
+        },
         "iscompleted": {
             "label": "¿Está su comentario completo?"
         }

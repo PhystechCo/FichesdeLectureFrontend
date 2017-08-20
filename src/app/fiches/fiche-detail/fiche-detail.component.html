@@ -102,6 +102,16 @@
           </div>
 
           <div>
+            <h4 for="optional_one">{{commentform.optional_one.label}}</h4>
+            <textarea id="optional_one" placeholder="{{commentform.optional_one.placeholder}}" formControlName="optional_one"></textarea>
+          </div>
+
+          <div>
+            <h4 for="optional_two">{{commentform.optional_two.label}}</h4>
+            <textarea id="optional_two" placeholder="{{commentform.optional_two.placeholder}}" formControlName="optional_two"></textarea>
+          </div>
+
+          <div>
             <h4 for="isCompleted">{{commentform.iscompleted.label}}</h4>
             <md-checkbox class="style-5" id="isCompleted{{i}}" formControlName="isCompleted">
             </md-checkbox>
@@ -150,6 +160,6 @@
     <button (click)="gotoFiches()">{{labels[0].details.back}}</button>
   </p>
 
-  <p>Form value: {{ ficheForm.value | json }}</p>
+  <!--<p>Form value: {{ ficheForm.value | json }}</p>-->
 
 </div>

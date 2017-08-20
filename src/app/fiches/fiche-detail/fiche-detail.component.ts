@@ -86,6 +86,8 @@ export class FicheDetailComponent implements OnChanges {
         extrait: '',
         appreciation: '',
         submission_date: '',
+        optional_one: '',
+        optional_two: '',
         isCompleted: false
       }
     );

@@ -61,6 +61,8 @@ export class FicheAddComponent implements OnInit {
       resume: '',
       extrait: '',
       appreciation: '',
+      optional_one: '',
+      optional_two: '',
       isCompleted: false
     });
   }

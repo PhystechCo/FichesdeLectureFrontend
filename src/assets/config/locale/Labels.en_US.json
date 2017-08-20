@@ -168,6 +168,16 @@
             "placeholder": "Write here your personal opinion",
             "required": ""
         },
+        "optional_one": {
+            "label": "Elements for a critic",
+            "placeholder": "Elements for a critic",
+            "required": ""
+        },
+        "optional_two": {
+            "label": "Questions",
+            "placeholder": "Write here related questions",
+            "required": ""
+        },
         "iscompleted": {
             "label": "Is your comment complete?"
         }
