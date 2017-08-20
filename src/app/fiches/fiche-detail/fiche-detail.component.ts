@@ -1,7 +1,8 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Fiche } from "../../models/fiche";
 import { Book } from "../../models/book";
+import { Comment } from "../../models/comment";
 import { FicheDataService } from '../../services/fiche-data.service';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
@@ -15,7 +16,7 @@ import { LocaleService } from '../../services/locale.service';
   templateUrl: './fiche-detail.component.html',
   styleUrls: ['./fiche-detail.component.css']
 })
-export class FicheDetailComponent implements OnInit, OnChanges {
+export class FicheDetailComponent implements OnChanges {
 
   public labels : any;
   public bookform : any;
@@ -41,19 +42,11 @@ export class FicheDetailComponent implements OnInit, OnChanges {
     private messageService: MessageService,
     private locale : LocaleService) {
 
+    this.route.params.subscribe(params => { this.id = params['id']; this.uuid = params['uuid']; });
+
     this.author = this.authService.getUser().split('@')[0];
 
-    this.ficheForm = fb.group({
-      title: '',
-      subTitle: '',
-      author: '',
-      yearPub: 0,
-      editor: '',
-      collection: '',
-      pages: 0,
-      language: '',
-      comments: fb.array([this.initComment(this.author)])
-    });
+    this.createForm();
 
     this.subscription = this.messageService.getMessage().subscribe(message => { this.message = message; });
 
@@ -64,7 +57,21 @@ export class FicheDetailComponent implements OnInit, OnChanges {
     this.labels = locale.get("fiches");
     this.bookform = locale.get("bookform");
     this.commentform = locale.get("commentform");
-    
+  }
+
+  createForm() {
+
+    this.ficheForm = this.fb.group({
+      title: '',
+      subTitle: '',
+      author: '',
+      yearPub: 0,
+      editor: '',
+      collection: '',
+      pages: 0,
+      language: '',
+      comments: this.fb.array([this.initComment(this.author)])
+    });
   }
 
   initComment(currentAuthor: string) {
@@ -88,7 +95,6 @@ export class FicheDetailComponent implements OnInit, OnChanges {
 
     console.log('OnInit');
 
-    this.route.params.subscribe(params => { this.id = params['id']; this.uuid = params['uuid']; });
     this.service.getStoredFiche(this.id, this.uuid).subscribe((retrieveFiche: Fiche) => {
 
       this.fiche = retrieveFiche;
@@ -122,7 +128,7 @@ export class FicheDetailComponent implements OnInit, OnChanges {
 
       this.fiche = retrieveFiche;
 
-      this.ficheForm.patchValue({
+      this.ficheForm.reset({
         title: this.fiche.book.title,
         subTitle: this.fiche.book.subTitle,
         author: this.fiche.book.author,
@@ -133,13 +139,21 @@ export class FicheDetailComponent implements OnInit, OnChanges {
         language: this.fiche.book.language
       });
 
+      /*
       this.removeAllComments();
-
       this.fiche.comments.forEach((element) => {
         this.addStoredComment(element);
-      });
+      }); */
+
+      this.setComments(this.fiche.comments);
 
     });
+  }
+
+  setComments(comments: Comment[]) {
+    const commentsFGs = comments.map(comment => this.fb.group(comment));
+    const commentFormArray = this.fb.array(commentsFGs);
+    this.ficheForm.setControl('comments', commentFormArray);
   }
 
   addComment() {
@@ -182,6 +196,7 @@ export class FicheDetailComponent implements OnInit, OnChanges {
     this.service.updateFiche( this.id, fiche ).subscribe(data => {
       if (!data.errorInd) {
         this.isupdated = true;
+        this.ngOnChanges();
       }
     });
   }
@@ -214,7 +229,10 @@ export class FicheDetailComponent implements OnInit, OnChanges {
     this.isupdated = false;
   }
 
-  revert() { this.ngOnChanges(); }
+  revert() { 
+
+    this.ngOnChanges();
+  }
 
   ngOnDestroy() {
 

@@ -86,7 +86,7 @@
                 "comment": "Comentario",
                 "author": "Autor de este comentario",
                 "save": "Guardar",
-                "cancel": "Limpiar",
+                "cancel": "Restaurar",
                 "remove": "Remover",
                 "addcomment": "Adicionar comentario",
                 "docx": "Generar docx (Word)",
@@ -132,8 +132,8 @@
             "required": ""
         },
         "language": {
-            "label": "Lenguaje",
-            "placeholder": "Lenguaje original del libro",
+            "label": "Lengua",
+            "placeholder": "Idioma original del libro",
             "required": ""
         }
     },

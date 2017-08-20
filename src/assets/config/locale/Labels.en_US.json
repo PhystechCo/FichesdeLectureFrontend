@@ -25,7 +25,7 @@
                     "label": "password",
                     "placeholder": "password"
                 },
-                "submit": "Submit"
+                "submit": "Log in"
             }
         }
     ],
@@ -86,7 +86,7 @@
                 "comment": "Comment",
                 "author": "This comment author",
                 "save": "Save",
-                "cancel": "Clear",
+                "cancel": "Restore",
                 "remove": "Remove",
                 "addcomment": "Add comment",
                 "docx": "Generate docx (Word)",
