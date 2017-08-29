@@ -37,6 +37,7 @@ export class FicheListComponent implements OnInit {
     this.columns.push( { 'name': this.labels[0].list.col1 } );
     this.columns.push( { 'name': this.labels[0].list.col2 } );
     this.columns.push( { 'name': this.labels[0].list.col3 } );
+    this.columns.push( { 'name': this.labels[0].list.col4 } );
 
     console.log(this.columns);
  
@@ -85,7 +86,8 @@ export class FicheListComponent implements OnInit {
           rows.push({ 
             'id' : (i + 1).toString(), 
             'title' : this.storedFiches[i].book.title,
-            'author' : this.storedFiches[i].book.author
+            'author' : this.storedFiches[i].book.author,
+            'optional_one' : this.storedFiches[i].book.optional_one,
           })
         console.log(rows);
         cb(rows);

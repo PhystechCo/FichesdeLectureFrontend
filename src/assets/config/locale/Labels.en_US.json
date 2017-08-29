@@ -81,7 +81,8 @@
                 "reload": "Reload",
                 "col1" : "Id",
                 "col2" : "Title",
-                "col3" : "Author(s)"
+                "col3" : "Author(s)",
+                "col4" : "Group"
             },
             "details": {
                 "title": "Details",
