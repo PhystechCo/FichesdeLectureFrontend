@@ -203,7 +203,8 @@
                 "added": "New fiche saved!",
                 "updated": "Fiche updated!",
                 "docx": "Word document created!",
-                "deleted": "Fiche deleted!"
+                "deleted": "Fiche deleted!",
+                "upload": "New fiches created from file!"
             },
             "notice": {
                 "welcome": "Welcome!"

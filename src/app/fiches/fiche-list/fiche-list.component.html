@@ -7,7 +7,7 @@
     -->
 
     <div style='width:100%'>
-        <ngx-datatable class="material" [rows]="rows | async" [columns]="columns" [columnMode]="flex" [headerHeight]="50" [footerHeight]="50"
+        <ngx-datatable class="material" [rows]="rows | async" [columns]="columns" [columnMode]="standard" [headerHeight]="50" [footerHeight]="50"
             [rowHeight]="'auto'" [limit]="10" [selected]="selected" [selectionType]="'single'" (select)='onSelect($event)' (activate)="onActivate($event)">
 
             <ngx-datatable-column prop="id" name="{{labels[0].list.col1}}" [width]="50">
@@ -16,19 +16,19 @@
                 </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column prop="title" name="{{labels[0].list.col2}}" [flexGrow]="1">
+            <ngx-datatable-column prop="title" name="{{labels[0].list.col2}}" [width]="500">
                 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                     {{value}}
                 </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column prop="author" name="{{labels[0].list.col3}}" [flexGrow]="1">
+            <ngx-datatable-column prop="author" name="{{labels[0].list.col3}}" [width]="300">
                 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                     {{value}}
                 </ng-template>
             </ngx-datatable-column>
 
-            <ngx-datatable-column prop="optional_one" name="{{labels[0].list.col4}}" [flexGrow]="1">
+            <ngx-datatable-column prop="optional_one" name="{{labels[0].list.col4}}" [width]="100">
                 <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                     {{value}}
                 </ng-template>

@@ -136,8 +136,19 @@ export class FicheDataService {
     input.append("file", fileToUpload);
 
     return this.authHttp
-      //.post("https://protected-brushlands-57544.herokuapp.com/fileupload/", input);
-      .post("http://localhost:4567/users/fiches/uploadfiche", input);
+      .post(this.backendUrl + "/users/fiches/uploadfiche", input).map((res: Response) => {
+        let message = res.json();
+        if ((message.errorInd === false) && message.value) {
+          this.messageService.sendMessage('success', this.labels[0].success.upload);
+          setTimeout(function () {
+            this.messageService.clearMessage();
+          }.bind(this), 4500);
+        }
+        return message;
+      })
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error')).finally(() => {
+        this.loaderService.hide()
+      });
 
   }
 

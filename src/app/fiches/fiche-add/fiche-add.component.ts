@@ -145,6 +145,7 @@ export class FicheAddComponent implements OnInit {
         .uploadFile(fileToUpload)
         .subscribe(res => {
           console.log(res);
+          this.csvFileName = '';
         });
     }
   }

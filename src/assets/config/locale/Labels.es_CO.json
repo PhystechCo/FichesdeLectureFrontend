@@ -204,7 +204,8 @@
                 "added": "¡Ficha nueva adicionada!",
                 "updated": "¡Ficha actualizada!",
                 "docx": "¡Documento Word creado!",
-                "deleted": "¡Ficha eliminada!"
+                "deleted": "¡Ficha eliminada!",
+                "upload": "¡Fichas nuevas adicionadas mediante archivo!"
             },
             "notice": {
                 "welcome": "¡Bienvenido!"
