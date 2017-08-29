@@ -69,9 +69,12 @@
                 "author": "por: ",
                 "comment": "Comentario ",
                 "addcomment": "Adicionar comentario",
-                "submit": "Enviar",
+                "submit": "Guardar",
                 "cancel": "Limpiar",
-                "remove": "Eliminar"
+                "remove": "Eliminar",
+                "upload": "Crear fichas de lectura desde un archivo CSV",
+                "choosefile": "Seleccione el archivo",
+                "send": "Enviar"
             },
             "list": {
                 "title": "Lista de fichas de lectura",
@@ -134,6 +137,18 @@
         "language": {
             "label": "Lengua",
             "placeholder": "Idioma original del libro",
+            "required": ""
+        }
+        ,
+        "translation": {
+            "label": "Traducido por",
+            "placeholder": "Traductor del libro - editado por",
+            "required": ""
+        }
+        ,
+        "optional_one": {
+            "label": "Grupo",
+            "placeholder": "Indique si el libro pertenece a alguna lista en especial",
             "required": ""
         }
     },

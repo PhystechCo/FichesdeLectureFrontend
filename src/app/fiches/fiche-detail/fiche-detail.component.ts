@@ -70,6 +70,8 @@ export class FicheDetailComponent implements OnChanges {
       collection: '',
       pages: 0,
       language: '',
+      translation: '',
+      optional_one: '',
       comments: this.fb.array([this.initComment(this.author)])
     });
   }
@@ -109,7 +111,9 @@ export class FicheDetailComponent implements OnChanges {
         editor: this.fiche.book.editor,
         collection: this.fiche.book.collection,
         pages: this.fiche.book.pages,
-        language: this.fiche.book.language
+        language: this.fiche.book.language,
+        translation: this.fiche.book.translation,
+        optional_one: this.fiche.book.optional_one
       });
 
       console.log("inside OnInit");
@@ -138,7 +142,9 @@ export class FicheDetailComponent implements OnChanges {
         editor: this.fiche.book.editor,
         collection: this.fiche.book.collection,
         pages: this.fiche.book.pages,
-        language: this.fiche.book.language
+        language: this.fiche.book.language,
+        translation: this.fiche.book.translation,
+        optional_one: this.fiche.book.optional_one
       });
 
       /*

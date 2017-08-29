@@ -9,6 +9,11 @@ export class Book {
     collection: string;
     pages: number;
     language: string;
+    translation: string;
+    optional_one: string;
+    
+    //isbn: number;
+    //optional_two: string;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

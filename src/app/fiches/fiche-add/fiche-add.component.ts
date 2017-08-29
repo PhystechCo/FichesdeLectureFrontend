@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
 import { FicheDataService } from '../../services/fiche-data.service';
 import { AuthService } from '../../services/auth.service';
@@ -19,27 +19,33 @@ export class FicheAddComponent implements OnInit {
   message: any;
   subscription: Subscription;
 
-  public labels : any;
-  public bookform : any;
-  public commentform : any;
+  public labels: any;
+  public bookform: any;
+  public commentform: any;
 
-  constructor(private service: FicheDataService, 
-    private fb: FormBuilder, 
-    private authService: AuthService, 
-    private messageService: MessageService, 
-    private locale : LocaleService) {
+  @ViewChild("fileInput") fileInput;
+
+  csvFileName: string;
+
+  constructor(private service: FicheDataService,
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private messageService: MessageService,
+    private locale: LocaleService) {
 
     this.author = this.authService.getUser().split('@')[0];
 
     this.ficheForm = fb.group({
       title: ['', Validators.required],
-      subTitle: ['', Validators.required],
+      subTitle: '',
       author: ['', Validators.required],
       yearPub: 0,
       editor: '',
       collection: '',
       pages: 0,
       language: '',
+      translation: '',
+      optional_one: '',
       comments: fb.array([this.initComment(this.author)])
     });
 
@@ -48,7 +54,7 @@ export class FicheAddComponent implements OnInit {
     this.labels = locale.get("fiches");
     this.bookform = locale.get("bookform");
     this.commentform = locale.get("commentform");
-    
+
   }
 
   initComment(currentAuthor: string) {
@@ -93,7 +99,9 @@ export class FicheAddComponent implements OnInit {
       editor: '',
       collection: '',
       pages: 0,
-      language: ''
+      language: '',
+      translation: '',
+      optional_one: ''
     });
 
     const control = <FormArray>this.ficheForm.controls['comments'];
@@ -104,19 +112,41 @@ export class FicheAddComponent implements OnInit {
   }
 
   onSubmit(output: FormGroup): void {
-    
+
     if (this.ficheForm.valid) {
 
       console.log('your submitted value: ', output.value);
-      var fiche = this.service.getFiche( null, output.value );
+      var fiche = this.service.getFiche(null, output.value);
 
       this.service.createFiche(fiche);
     }
   }
 
-  revert() { 
-    
-    this.ngOnChanges(); 
+  revert() {
+
+    this.ngOnChanges();
+  }
+
+  fileChanged(event) {
+    let fi = this.fileInput.nativeElement;
+    if (fi.files && fi.files[0]) {
+      this.csvFileName = event.target.files[0].name;
+      console.log(this.csvFileName);
+    } else {
+      this.csvFileName = '';
+    }
+  }
+
+  uploadFile() {
+    let fi = this.fileInput.nativeElement;
+    if (fi.files && fi.files[0]) {
+      let fileToUpload = fi.files[0];
+      this.service
+        .uploadFile(fileToUpload)
+        .subscribe(res => {
+          console.log(res);
+        });
+    }
   }
 
   ngOnDestroy() {

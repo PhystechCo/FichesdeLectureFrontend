@@ -24,7 +24,7 @@ export class FicheDataService {
   private backendUrl;
   private svcDocxUrl;
 
-  public labels : any;
+  public labels: any;
 
   contentHeaders = new Headers();
 
@@ -32,8 +32,8 @@ export class FicheDataService {
     public authHttp: AuthHttp,
     private messageService: MessageService,
     private loaderService: LoaderService,
-    private config : Config,
-    private locale : LocaleService) {
+    private config: Config,
+    private locale: LocaleService) {
 
     this.contentHeaders.append('Accept', 'application/json');
     this.contentHeaders.append('Content-Type', 'application/json');
@@ -47,14 +47,14 @@ export class FicheDataService {
   }
 
   //POST 1.
-  createFiche(fiche : Fiche) {
+  createFiche(fiche: Fiche) {
 
     this.loaderService.show();
 
     let options = new RequestOptions({ headers: this.contentHeaders });
 
     if (1) {
-      
+
       console.log(JSON.stringify(fiche));
 
       this.authHttp.post(this.backendUrl + "/users/fiches/", JSON.stringify(fiche), options)
@@ -69,20 +69,21 @@ export class FicheDataService {
         })
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
         .finally(() => {
-        this.loaderService.hide()})
+          this.loaderService.hide()
+        })
         .subscribe();
     }
   }
 
   //POST 2.
-  updateFiche(id: string, fiche : Fiche ) {
+  updateFiche(id: string, fiche: Fiche) {
 
     this.loaderService.show();
 
     let options = new RequestOptions({ headers: this.contentHeaders });
 
     if (1) {
-      
+
       console.log(JSON.stringify(fiche));
 
       return this.authHttp.put(this.backendUrl + "/users/fiches/" + id + "/" + fiche.book.book_uuid, JSON.stringify(fiche), options)
@@ -97,12 +98,13 @@ export class FicheDataService {
           return message;
         })
         .catch((error: any) => Observable.throw(error.json().error || 'Server error')).finally(() => {
-        this.loaderService.hide()});
+          this.loaderService.hide()
+        });
     }
   }
 
   //POST 3.
-  createFicheDocx(id: string, fiche : Fiche ) {
+  createFicheDocx(id: string, fiche: Fiche) {
 
     this.loaderService.show();
 
@@ -111,7 +113,7 @@ export class FicheDataService {
     if (1) {
 
       console.log(JSON.stringify(fiche));
-      
+
       return this.authHttp.post(this.svcDocxUrl + "/users/fiches/", JSON.stringify(fiche), options)
         .map((res: Response) => {
           let message = res.json();
@@ -124,8 +126,19 @@ export class FicheDataService {
           return message;
         })
         .catch((error: any) => Observable.throw(error.json().error || 'Server error')).finally(() => {
-        this.loaderService.hide()});
+          this.loaderService.hide()
+        });
     }
+  }
+
+  uploadFile(fileToUpload: any) {
+    let input = new FormData();
+    input.append("file", fileToUpload);
+
+    return this.authHttp
+      //.post("https://protected-brushlands-57544.herokuapp.com/fileupload/", input);
+      .post("http://localhost:4567/users/fiches/uploadfiche", input);
+
   }
 
   // GET 1.
@@ -148,18 +161,20 @@ export class FicheDataService {
     return this.authHttp.get(this.backendUrl + "/users/fiches/")
       .map(response => response.json() as IFiche[])
       .catch(this.handleError).finally(() => {
-        this.loaderService.hide()});
+        this.loaderService.hide()
+      });
   }
 
   // GET 2.
   getStoredFiche(id: string, uuid: string): Observable<Fiche> {
-    
+
     this.loaderService.show();
 
     return this.authHttp.get(this.backendUrl + "/users/fiches/" + id + "/" + uuid)
       .map(this.extractData)
       .catch(this.handleError).finally(() => {
-        this.loaderService.hide()});
+        this.loaderService.hide()
+      });
   }
 
   // GET 3.
@@ -168,12 +183,13 @@ export class FicheDataService {
     this.loaderService.show();
 
     let filename = "fiche_" + uuid + ".docx";
-    
+
     this.authHttp.get(this.svcDocxUrl + "/users/fiches/")
       .map(this.extractData)
       .catch(this.handleError)
       .finally(() => {
-        this.loaderService.hide()})
+        this.loaderService.hide()
+      })
       .subscribe(
       data => {
         if (!data.errorInd) {
@@ -208,8 +224,8 @@ export class FicheDataService {
   }
 
   // GET 5. 
-  getStatistics() : Observable<Statistics>{
-    
+  getStatistics(): Observable<Statistics> {
+
     let options = new RequestOptions({ headers: this.contentHeaders });
 
     this.loaderService.show();
@@ -217,7 +233,8 @@ export class FicheDataService {
     return this.http.get(this.backendUrl + "/statistics", options)
       .map(this.extractData)
       .catch(this.handleError).finally(() => {
-        this.loaderService.hide()});
+        this.loaderService.hide()
+      });
   }
 
   // DELETE 1.
@@ -236,7 +253,8 @@ export class FicheDataService {
         }
       })
       .catch(this.handleError).finally(() => {
-        this.loaderService.hide()})
+        this.loaderService.hide()
+      })
       .subscribe();
 
   }
@@ -261,30 +279,32 @@ export class FicheDataService {
     return Observable.throw(errMsg);
   }
 
-  getFiche( uuid: string, inputData : any ) : Fiche {
-    
-        var book = { 
-          title: inputData.title,
-          subTitle : inputData.subTitle,
-          author:  inputData.author,
-          yearPub:  inputData.yearPub,
-          editor:  inputData.editor,
-          collection:  inputData.collection,
-          pages:  inputData.pages,
-          language:  inputData.language 
-        };
-    
-        if ( uuid != null ) {
-          book["book_uuid"] = uuid;
-        }
+  getFiche(uuid: string, inputData: any): Fiche {
 
-        var comments = inputData.comments;
-    
-        let ficheInfo: any = { "id": 0, "book": book, "comments": comments };
-        let fiche = new Fiche(ficheInfo);
-    
-        return fiche;
-    
-      }
+    var book = {
+      title: inputData.title,
+      subTitle: inputData.subTitle,
+      author: inputData.author,
+      yearPub: inputData.yearPub,
+      editor: inputData.editor,
+      collection: inputData.collection,
+      pages: inputData.pages,
+      language: inputData.language,
+      translation: inputData.translation,
+      optional_one: inputData.optional_one
+    };
+
+    if (uuid != null) {
+      book["book_uuid"] = uuid;
+    }
+
+    var comments = inputData.comments;
+
+    let ficheInfo: any = { "id": 0, "book": book, "comments": comments };
+    let fiche = new Fiche(ficheInfo);
+
+    return fiche;
+
+  }
 
 }

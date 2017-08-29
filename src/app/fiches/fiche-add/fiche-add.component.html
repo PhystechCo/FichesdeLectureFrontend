@@ -13,7 +13,6 @@
     <div class="field style-4">
       <label for="subTitleInput">{{bookform.subtitle.label}}</label>
       <input type="text" id="subTitleInput" placeholder="{{bookform.subtitle.placeholder}}" [formControl]="ficheForm.controls['subTitle']">
-      <div *ngIf="ficheForm.controls['subTitle'].hasError('required')" class="minialert-box error">{{bookform.subtitle.required}}</div>
     </div>
 
     <div class="field style-4">
@@ -45,6 +44,16 @@
     <div class="field style-4">
       <label for="languageInput">{{bookform.language.label}}</label>
       <input type="text" id="languageInput" placeholder="{{bookform.language.placeholder}}" [formControl]="ficheForm.controls['language']">
+    </div>
+
+    <div class="field style-4">
+      <label for="translationInput">{{bookform.translation.label}}</label>
+      <input type="text" id="translationInput" placeholder="{{bookform.translation.placeholder}}" [formControl]="ficheForm.controls['translation']">
+    </div>
+
+    <div class="field style-4">
+      <label for="optionalOneInput">{{bookform.optional_one.label}}</label>
+      <input type="text" id="optionalOneInput" placeholder="{{bookform.optional_one.placeholder}}" [formControl]="ficheForm.controls['optional_one']">
     </div>
 
     <!-- Now the form to add a comment-->
@@ -144,5 +153,22 @@
   </div>
 
   <!--<p>Form value: {{ ficheForm.value | json }}</p>-->
+
+</div>
+
+<div>
+
+  <h3>{{labels[0].new.upload}}</h3>
+
+  <div class="add-comment" style="margin: 2em">
+    <input #fileInput type="file" accept=".csv" id="file" class="inputfile" (change)="fileChanged($event)" />
+    <label for="file">{{labels[0].new.choosefile}}</label>
+    <button (click)="uploadFile()">{{labels[0].new.send}}</button>
+    <div *ngIf="csvFileName">
+        <h4>{{csvFileName}}</h4>
+    </div>
+  </div>
+
+
 
 </div>

@@ -46,6 +46,17 @@
       <input type="text" id="languageInput" placeholder="{{bookform.language.placeholder}}" [formControl]="ficheForm.controls['language']">
     </div>
 
+    <div class="field style-4">
+      <label for="translationInput">{{bookform.translation.label}}</label>
+      <input type="text" id="translationInput" placeholder="{{bookform.translation.placeholder}}" [formControl]="ficheForm.controls['translation']">
+    </div>
+
+    <div class="field style-4">
+      <label for="optionalOneInput">{{bookform.optional_one.label}}</label>
+      <input type="text" id="optionalOneInput" placeholder="{{bookform.optional_one.placeholder}}" [formControl]="ficheForm.controls['optional_one']">
+    </div>
+
+
     <!-- Now the form to add a comment-->
 
     <div formArrayName="comments">
@@ -160,6 +171,6 @@
     <button (click)="gotoFiches()">{{labels[0].details.back}}</button>
   </p>
 
-  <!--<p>Form value: {{ ficheForm.value | json }}</p>-->
+ <p>Form value: {{ ficheForm.value | json }}</p>
 
 </div>

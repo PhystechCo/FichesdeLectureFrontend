@@ -69,9 +69,12 @@
                 "author": "from: ",
                 "comment": "Comment ",
                 "addcomment": "Add comment",
-                "submit": "Send",
+                "submit": "Save",
                 "cancel": "Clear",
-                "remove": "Remove"
+                "remove": "Remove",
+                "upload": "Create fiches from a CSV file",
+                "choosefile": "Choose a file",
+                "send": "Send"
             },
             "list": {
                 "title": "Fiche de lecture list",
@@ -134,6 +137,17 @@
         "language": {
             "label": "Language",
             "placeholder": "Book's original language",
+            "required": ""
+        },
+        "translation": {
+            "label": "Translated by",
+            "placeholder": "Book translator - edited by",
+            "required": ""
+        }
+        ,
+        "optional_one": {
+            "label": "Group",
+            "placeholder": "Indicate if the book belongs to a list or group",
             "required": ""
         }
     },
