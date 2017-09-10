@@ -46,6 +46,8 @@ export class FicheAddComponent implements OnInit {
       language: '',
       translation: '',
       optional_one: '',
+      author_nationality: '',
+      author_period: '',
       comments: fb.array([this.initComment(this.author)])
     });
 
@@ -69,7 +71,9 @@ export class FicheAddComponent implements OnInit {
       appreciation: '',
       optional_one: '',
       optional_two: '',
-      isCompleted: false
+      isCompleted: false,
+      comment_text: '',
+      other_details: ''
     });
   }
 
@@ -101,7 +105,9 @@ export class FicheAddComponent implements OnInit {
       pages: 0,
       language: '',
       translation: '',
-      optional_one: ''
+      optional_one: '',
+      author_nationality: '',
+      author_period: ''
     });
 
     const control = <FormArray>this.ficheForm.controls['comments'];

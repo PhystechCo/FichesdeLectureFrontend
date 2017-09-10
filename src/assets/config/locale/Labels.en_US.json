@@ -67,8 +67,9 @@
             "new": {
                 "title": "Add a new fiche",
                 "author": "from: ",
-                "comment": "Comment ",
-                "addcomment": "Add comment",
+                "biblio": "Bibliographic information",
+                "comment": "Fiche ecture ",
+                "addcomment": "Add fiche",
                 "submit": "Save",
                 "cancel": "Clear",
                 "remove": "Remove",
@@ -87,12 +88,13 @@
             "details": {
                 "title": "Details",
                 "selected": "Selected fiche",
-                "comment": "Comment",
-                "author": "This comment author",
+                "biblio": "Bibliographic information",
+                "comment": "Fiche lecture",
+                "author": "This fiche lecture author",
                 "save": "Save",
                 "cancel": "Restore",
                 "remove": "Remove",
-                "addcomment": "Add comment",
+                "addcomment": "Add fiche lecture",
                 "docx": "Generate docx (Word)",
                 "download": "Download docx",
                 "back": "Back"
@@ -150,6 +152,16 @@
             "label": "Group",
             "placeholder": "Indicate if the book belongs to a list or group",
             "required": ""
+        },
+        "nationality": {
+            "label": "Author's nationality",
+            "placeholder": "Country where the author was born",
+            "required": ""
+        },
+        "period": {
+            "label": "Author's period",
+            "placeholder": "Format: Birth year:Death year (0 if still alive)",
+            "required": ""
         }
     },
     "commentform": {
@@ -192,6 +204,14 @@
             "label": "Questions",
             "placeholder": "Write here related questions",
             "required": ""
+        },
+        "comment_text": {
+            "label": "Comments",
+            "placeholder": "If you have any comments"
+        },
+        "other_details": {
+            "label": "Other details",
+            "placeholder": "Other details (for texts, dedicatories, curiosities, etc)"
         },
         "iscompleted": {
             "label": "Is your comment complete?"

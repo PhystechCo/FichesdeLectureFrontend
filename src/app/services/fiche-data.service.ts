@@ -302,7 +302,9 @@ export class FicheDataService {
       pages: inputData.pages,
       language: inputData.language,
       translation: inputData.translation,
-      optional_one: inputData.optional_one
+      optional_one: inputData.optional_one,
+      author_nationality: inputData.author_nationality,
+      author_period: inputData.author_period
     };
 
     if (uuid != null) {

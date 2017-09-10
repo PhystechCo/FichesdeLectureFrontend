@@ -11,6 +11,8 @@ export class Book {
     language: string;
     translation: string;
     optional_one: string;
+    author_nationality: string;
+    author_period: string;
     
     //isbn: number;
     //optional_two: string;

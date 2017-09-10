@@ -66,18 +66,19 @@
             },
             "new": {
                 "title": "Adicionar una nueva ficha",
+                "biblio": "Ficha bibliográfica",
                 "author": "por: ",
-                "comment": "Comentario ",
-                "addcomment": "Adicionar comentario",
+                "comment": "Ficha de lectura ",
+                "addcomment": "Adicionar ficha de lectura",
                 "submit": "Guardar",
                 "cancel": "Limpiar",
                 "remove": "Eliminar",
-                "upload": "Crear fichas de lectura desde un archivo CSV",
+                "upload": "Crear fichas desde un archivo CSV",
                 "choosefile": "Seleccione el archivo",
                 "send": "Enviar"
             },
             "list": {
-                "title": "Lista de fichas de lectura",
+                "title": "Lista de fichas",
                 "reload": "Recargar",
                 "col1" : "Id",
                 "col2" : "Titulo",
@@ -87,12 +88,13 @@
             "details": {
                 "title": "Detalles",
                 "selected": "Ficha seleccionada",
-                "comment": "Comentario",
-                "author": "Autor de este comentario",
+                "biblio": "Ficha bibliográfica",
+                "comment": "Ficha de lectura",
+                "author": "Ficha creada por:",
                 "save": "Guardar",
                 "cancel": "Restaurar",
                 "remove": "Remover",
-                "addcomment": "Adicionar comentario",
+                "addcomment": "Adicionar ficha de lectura",
                 "docx": "Generar docx (Word)",
                 "download": "Descargar docx",
                 "back": "Atrás"
@@ -151,6 +153,16 @@
             "label": "Grupo",
             "placeholder": "Indique si el libro pertenece a alguna lista en especial",
             "required": ""
+        },
+        "nationality": {
+            "label": "Nacionalidad del autor",
+            "placeholder": "País de nacimiento del autor",
+            "required": ""
+        },
+        "period": {
+            "label": "Lapso en que ha vivido (vive)",
+            "placeholder": "Formato: Año de nacimiento:Año de muerte (0 si vive aún)",
+            "required": ""
         }
     },
     "commentform": {
@@ -195,7 +207,15 @@
             "required": ""
         },
         "iscompleted": {
-            "label": "¿Está su comentario completo?"
+            "label": "¿Está su ficha completa?"
+        },
+        "comment_text": {
+            "label": "Comentarios",
+            "placeholder": "Si tiene comentarios"
+        },
+        "other_details": {
+            "label": "Otros detalles",
+            "placeholder": "Otros detalles (para textos, dedicatorias, curiosidades, etc)"
         }
     },
     "messages": [

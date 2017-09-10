@@ -4,6 +4,8 @@
 
   <p>{{labels[0].details.selected}}: {{ id }}</p>
 
+  <h4>{{labels[0].details.biblio}}</h4>
+
   <form [formGroup]="ficheForm" (ngSubmit)="onSubmit(ficheForm)" novalidate>
 
     <div class="field style-4">
@@ -19,6 +21,16 @@
     <div class="field style-4">
       <label for="authorInput">{{bookform.author.label}}</label>
       <input type="text" id="authorInput" placeholder="{{bookform.author.placeholder}}" [formControl]="ficheForm.controls['author']">
+    </div>
+
+    <div class="field style-4">
+      <label for="authorNationality">{{bookform.nationality.label}}</label>
+      <input type="text" id="authorNationality" placeholder="{{bookform.nationality.placeholder}}" [formControl]="ficheForm.controls['author_nationality']">
+    </div>
+
+    <div class="field style-4">
+      <label for="authorPeriod">{{bookform.period.label}}</label>
+      <input type="text" id="authorPeriod" placeholder="{{bookform.period.placeholder}}" [formControl]="ficheForm.controls['author_period']">
     </div>
 
     <div class="field style-4">
@@ -65,7 +77,7 @@
 
         <div class="panel-heading">
           <div>
-            <span>{{labels[0].details.comment}} {{i + 1}}</span>
+            <h4>{{labels[0].details.comment}} {{i + 1}}</h4>
             <button *ngIf="ficheForm.controls.comments.controls.length > 1" (click)="removeComment(i)">(Remove)</button>
           </div>
         </div>
@@ -120,6 +132,16 @@
           <div>
             <h4 for="optional_two">{{commentform.optional_two.label}}</h4>
             <textarea id="optional_two" placeholder="{{commentform.optional_two.placeholder}}" formControlName="optional_two"></textarea>
+          </div>
+
+          <div>
+            <h4 for="comment_text">{{commentform.comment_text.label}}</h4>
+            <textarea id="comment_text" placeholder="{{commentform.comment_text.placeholder}}" formControlName="comment_text"></textarea>
+          </div>
+
+          <div>
+            <h4 for="other_details">{{commentform.other_details.label}}</h4>
+            <textarea id="other_details" placeholder="{{commentform.other_details.placeholder}}" formControlName="other_details"></textarea>
           </div>
 
           <div>

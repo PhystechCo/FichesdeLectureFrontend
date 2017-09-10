@@ -72,6 +72,8 @@ export class FicheDetailComponent implements OnChanges {
       language: '',
       translation: '',
       optional_one: '',
+      author_nationality: '',
+      author_period: '',
       comments: this.fb.array([this.initComment(this.author)])
     });
   }
@@ -90,7 +92,9 @@ export class FicheDetailComponent implements OnChanges {
         submission_date: '',
         optional_one: '',
         optional_two: '',
-        isCompleted: false
+        isCompleted: false,
+        comment_text: '',
+        other_details: ''
       }
     );
   }
@@ -113,7 +117,9 @@ export class FicheDetailComponent implements OnChanges {
         pages: this.fiche.book.pages,
         language: this.fiche.book.language,
         translation: this.fiche.book.translation,
-        optional_one: this.fiche.book.optional_one
+        optional_one: this.fiche.book.optional_one,
+        author_nationality: this.fiche.book.author_nationality,
+        author_period: this.fiche.book.author_period,
       });
 
       console.log("inside OnInit");
@@ -144,7 +150,9 @@ export class FicheDetailComponent implements OnChanges {
         pages: this.fiche.book.pages,
         language: this.fiche.book.language,
         translation: this.fiche.book.translation,
-        optional_one: this.fiche.book.optional_one
+        optional_one: this.fiche.book.optional_one,
+        author_nationality: this.fiche.book.author_nationality,
+        author_period: this.fiche.book.author_period,
       });
 
       /*
