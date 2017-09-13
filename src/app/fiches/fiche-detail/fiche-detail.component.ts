@@ -57,6 +57,7 @@ export class FicheDetailComponent implements OnChanges {
     this.labels = locale.get("fiches");
     this.bookform = locale.get("bookform");
     this.commentform = locale.get("commentform");
+
   }
 
   createForm() {
@@ -154,12 +155,6 @@ export class FicheDetailComponent implements OnChanges {
         author_nationality: this.fiche.book.author_nationality,
         author_period: this.fiche.book.author_period,
       });
-
-      /*
-      this.removeAllComments();
-      this.fiche.comments.forEach((element) => {
-        this.addStoredComment(element);
-      }); */
 
       this.setComments(this.fiche.comments);
 

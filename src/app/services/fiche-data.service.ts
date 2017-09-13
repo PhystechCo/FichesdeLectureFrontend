@@ -131,6 +131,35 @@ export class FicheDataService {
     }
   }
 
+  //POST 4.
+  createFicheXlsx(fiches: Fiche[]) {
+
+    this.loaderService.show();
+
+    let options = new RequestOptions({ headers: this.contentHeaders });
+
+    if (1) {
+
+      console.log(JSON.stringify(fiches));
+
+      return this.authHttp.post(this.svcDocxUrl + "/users/fiches/excel", JSON.stringify(fiches), options)
+        .map((res: Response) => {
+          let message = res.json();
+          if ((message.errorInd === false) && message.value) {
+            this.messageService.sendMessage('success', this.labels[0].success.xlsx);
+            setTimeout(function () {
+              this.messageService.clearMessage();
+            }.bind(this), 4500);
+          }
+          return message;
+        })
+        .catch((error: any) => Observable.throw(error.json().error || 'Server error')).finally(() => {
+          this.loaderService.hide()
+        });
+    }
+  }
+
+  //POST 5.
   uploadFile(fileToUpload: any) {
     let input = new FormData();
     input.append("file", fileToUpload);
@@ -217,6 +246,34 @@ export class FicheDataService {
   }
 
   // GET 4.
+  getFicheXlsx() {
+
+    this.loaderService.show();
+
+    let filename = "fichelist.xlsx";
+
+    this.authHttp.get(this.svcDocxUrl + "/users/fiches/excel")
+      .map(this.extractData)
+      .catch(this.handleError)
+      .finally(() => {
+        this.loaderService.hide()
+      })
+      .subscribe(
+      data => {
+        if (!data.errorInd) {
+          let byteCharacters = atob(data.value);
+          let byteNumbers = new Array(byteCharacters.length);
+          for (var i = 0; i < byteCharacters.length; i++)
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+          let byteArray = new Uint8Array(byteNumbers);
+          let file = new Blob([byteArray], { type: 'application/octet-stream' });
+          FileSaver.saveAs(file, filename);
+        }
+      })
+
+  }
+
+  // GET 5.
   getFichePNG() {
 
     this.http.get(this.svcDocxUrl + "/serialnumbers")
@@ -234,7 +291,7 @@ export class FicheDataService {
 
   }
 
-  // GET 5. 
+  // GET 6. 
   getStatistics(): Observable<Statistics> {
 
     let options = new RequestOptions({ headers: this.contentHeaders });
@@ -248,7 +305,7 @@ export class FicheDataService {
       });
   }
 
-  // DELETE 1.
+  //DELETE 1.
   deleteStoredFiche(id: string, uuid: string) {
 
     this.loaderService.show();

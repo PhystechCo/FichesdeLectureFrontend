@@ -37,4 +37,22 @@
         </ngx-datatable>
     </div>
 
+    <div style="margin: 2em" *ngIf="!xlsx">
+        <button (click)="createFicheXlsx()" class="save">{{labels[0].list.xlsx}}</button>
+    </div>
+
+    <div style="margin: 2em" *ngIf="xlsx">
+        <button (click)="downloadFicheXlsx()" class="save">{{labels[0].list.download}}</button>
+    </div>
+
+    <div class="message-box center">
+
+        <div *ngIf="message">
+            <div class="alert-box {{message.type}}"><span>{{message.text}}</span></div>
+        </div>
+
+    </div>
+
+
+
 </div>

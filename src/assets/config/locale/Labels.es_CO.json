@@ -83,7 +83,9 @@
                 "col1" : "Id",
                 "col2" : "Titulo",
                 "col3" : "Autor(es)",
-                "col4" : "Grupo"
+                "col4" : "Grupo",
+                "xlsx" : "Generar xlsx (Excel)",
+                "download": "Descargar xlsx"
             },
             "details": {
                 "title": "Detalles",
@@ -224,6 +226,7 @@
                 "added": "¡Ficha nueva adicionada!",
                 "updated": "¡Ficha actualizada!",
                 "docx": "¡Documento Word creado!",
+                "xlsx": "¡Documento Excel creado!",
                 "deleted": "¡Ficha eliminada!",
                 "upload": "¡Fichas nuevas adicionadas mediante archivo!"
             },
