@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Http, RequestOptions } from '@angular/http';
+import { HttpClient, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+export function authHttpServiceFactory(http: HttpClient, options: RequestOptions) {
   return new AuthHttp(new AuthConfig( {noTokenScheme : true } ), http, options);
 }
 
@@ -12,7 +12,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     {
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,
-      deps: [Http, RequestOptions]
+      deps: [HttpClient, RequestOptions]
     }
   ]
 })

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Request, Response, Headers } from '@angular/http';
+import { HttpClient, RequestOptions, Request, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -17,7 +17,7 @@ export class AuthService {
 
   jwtHelper: JwtHelper = new JwtHelper();
 
-  constructor(private http: Http,
+  constructor(private http: HttpClient,
     public authHttp: AuthHttp,
     private loaderService: LoaderService,
     private config: Config) {

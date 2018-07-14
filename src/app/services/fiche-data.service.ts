@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Request, Response, Headers, ResponseContentType } from '@angular/http';
+import { HttpClient, RequestOptions, Request, Response, Headers, ResponseContentType } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 
 import { Observable } from 'rxjs/Rx';
@@ -28,7 +28,7 @@ export class FicheDataService {
 
   contentHeaders = new Headers();
 
-  constructor(private http: Http,
+  constructor(private http: HttpClient,
     public authHttp: AuthHttp,
     private messageService: MessageService,
     private loaderService: LoaderService,

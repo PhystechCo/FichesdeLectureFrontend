@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpClientModule, JsonpModule } from '@angular/http';
 import { Router } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -39,7 +39,7 @@ import { LOCALECONFIG_PROVIDERS } from './services/locale.service';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
+    HttpClientModule,
     AuthModule,
     JsonpModule,
     FichesModule,
