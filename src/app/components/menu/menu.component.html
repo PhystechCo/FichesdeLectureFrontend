@@ -1,8 +1,0 @@
-<header class="header">
-  <h1>{{labels[0].title}}</h1>
-  <nav>
-    <a *ngIf="jwtservice.hasToken()" routerLink="/home" routerLinkActive="active">{{labels[0].home}}</a>
-    <a *ngIf="jwtservice.hasToken()" routerLink="/fiches" routerLinkActive="active">{{labels[0].fiches}}</a>
-    <a *ngIf="jwtservice.isAdmin()" routerLink="/admin" routerLinkActive="active">{{labels[0].admin}}</a>
-  </nav>
-</header>
