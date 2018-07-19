@@ -364,3 +364,5 @@ textarea:focus {
     background: transparent;
     border:2px solid #8ed9f6;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }

@@ -1,10 +1,11 @@
-import { Component, OnInit, OnChanges, Input, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { FicheDataService } from '../../services/fiche-data.service';
 import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
 import { MessageService } from '../../services/message.service';
 import { LocaleService } from '../../services/locale.service';
+
 
 @Component({
   selector: 'app-fiche-add',

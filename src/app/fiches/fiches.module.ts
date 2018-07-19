@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatProgressBarModule } from '@angular/material';
+import { HttpModule } from '@angular/http';
 
 import { FichesComponent } from './fiches.component';
 import { FichesRoutingModule } from './fiches-routing.module';
@@ -13,13 +13,18 @@ import { FicheAddComponent } from './fiche-add/fiche-add.component';
 
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
+import { MatProgressBarModule, MatCheckboxModule } from '@angular/material';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    HttpModule,
     ReactiveFormsModule,
     FichesRoutingModule,
-    MaterialModule,
+    MatProgressBarModule,
+    MatCheckboxModule,
     NgxDatatableModule,
   ],
   declarations: [
@@ -28,9 +33,13 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     FicheDetailComponent,
     FicheHomeComponent,
     FicheAddComponent
-  ],
+    ],
   providers: [
-    FicheDataService
+    FicheDataService,
+  ],
+  exports: [
+    MatCheckboxModule,
+    MatProgressBarModule,
   ]
 })
 export class FichesModule { }

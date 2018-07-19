@@ -1,8 +1,8 @@
 {
-
-    "authSvcUrl" : "https://rugged-yosemite-61189.herokuapp.com",
-    "backendUrl" : "https://fast-sea-84532.herokuapp.com", 
-    "svcDocxUrl" : "https://secure-fjord-78923.herokuapp.com",
+   
+    "authSvcUrl" : "http://localhost:4568",
+    "backendUrl" : "http://localhost:4567", 
+    "svcDocxUrl" : "http://localhost:4569",
     "locale"     : "assets/config/locale/Labels.es_CO.json"
 
 }

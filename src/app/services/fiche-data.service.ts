@@ -1,21 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Request, Response, Headers, ResponseContentType } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { AuthHttp } from '@auth0/angular-jwt';
 import * as FileSaver from 'file-saver';
 
-import { LoaderService } from './loader/loader.service';
+//import { LoaderService } from './loader/loader.service';
+
 import { MessageService } from '../services/message.service';
 
 import { Fiche } from "../models/fiche";
-import { Book } from "../models/book";
 import { IFiche } from "../models/interfaces";
 import { Statistics } from '../models/statistics';
+import { BackendMessage } from '../models/backend-message';
 
 import { Config } from '../app.config';
 import { LocaleService } from './locale.service';
+
 
 @Injectable()
 export class FicheDataService {
@@ -28,9 +30,9 @@ export class FicheDataService {
   contentHeaders = new Headers();
 
   constructor(private http: Http,
-    public authHttp: AuthHttp,
+    public authHttp: HttpClient,
     private messageService: MessageService,
-    private loaderService: LoaderService,
+    //private loaderService: LoaderService,
     private config: Config,
     private locale: LocaleService) {
 
@@ -48,17 +50,16 @@ export class FicheDataService {
   //POST 1.
   createFiche(fiche: Fiche) {
 
-    this.loaderService.show();
+    //this.loaderService.show();
 
-    let options = new RequestOptions({ headers: this.contentHeaders });
+    let headers = new HttpHeaders({ 'Accept' : 'application/json', 'Content-Type': 'application/json' });
 
     if (1) {
 
       console.log(JSON.stringify(fiche));
 
-      this.authHttp.post(this.backendUrl + "/users/fiches/", JSON.stringify(fiche), options)
-        .map((res: Response) => {
-          let message = res.json();
+      this.authHttp.post<BackendMessage>(this.backendUrl + "/users/fiches/", JSON.stringify(fiche), {headers: headers})
+        .pipe(map((message: BackendMessage) => {
           if ((message.errorInd === false) && message.value) {
             this.messageService.sendMessage('success', this.labels[0].success.added);
             setTimeout(function () {
@@ -66,28 +67,23 @@ export class FicheDataService {
             }.bind(this), 4500);
           }
         })
-        .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
-        .finally(() => {
-          this.loaderService.hide()
-        })
-        .subscribe();
+      ).subscribe();
     }
   }
 
   //POST 2.
   updateFiche(id: string, fiche: Fiche) {
 
-    this.loaderService.show();
+    //this.loaderService.show();
 
-    let options = new RequestOptions({ headers: this.contentHeaders });
+    let headers = new HttpHeaders({ 'Accept' : 'application/json', 'Content-Type': 'application/json' });
 
     if (1) {
 
       console.log(JSON.stringify(fiche));
 
-      return this.authHttp.put(this.backendUrl + "/users/fiches/" + id + "/" + fiche.book.book_uuid, JSON.stringify(fiche), options)
-        .map((res: Response) => {
-          let message = res.json();
+      return this.authHttp.put<BackendMessage>(this.backendUrl + "/users/fiches/" + id + "/" + fiche.book.book_uuid, JSON.stringify(fiche), {headers: headers})
+        .pipe(map((message: BackendMessage) => {
           if ((message.errorInd === false) && message.value) {
             this.messageService.sendMessage('success', this.labels[0].success.updated);
             setTimeout(function () {
@@ -95,27 +91,24 @@ export class FicheDataService {
             }.bind(this), 4500);
           }
           return message;
-        })
-        .catch((error: any) => Observable.throw(error.json().error || 'Server error')).finally(() => {
-          this.loaderService.hide()
-        });
+        }
+      ));
     }
   }
 
   //POST 3.
   createFicheDocx(id: string, fiche: Fiche) {
 
-    this.loaderService.show();
+    //this.loaderService.show();
 
-    let options = new RequestOptions({ headers: this.contentHeaders });
+    let headers = new HttpHeaders({ 'Accept' : 'application/json', 'Content-Type': 'application/json' });
 
     if (1) {
 
       console.log(JSON.stringify(fiche));
 
-      return this.authHttp.post(this.svcDocxUrl + "/users/fiches/", JSON.stringify(fiche), options)
-        .map((res: Response) => {
-          let message = res.json();
+      return this.authHttp.post<BackendMessage>(this.svcDocxUrl + "/users/fiches/", JSON.stringify(fiche), {headers: headers})
+        .pipe(map((message: BackendMessage) => {          
           if ((message.errorInd === false) && message.value) {
             this.messageService.sendMessage('success', this.labels[0].success.docx);
             setTimeout(function () {
@@ -123,27 +116,24 @@ export class FicheDataService {
             }.bind(this), 4500);
           }
           return message;
-        })
-        .catch((error: any) => Observable.throw(error.json().error || 'Server error')).finally(() => {
-          this.loaderService.hide()
-        });
+        }
+      ));
     }
   }
 
   //POST 4.
   createFicheXlsx(fiches: Fiche[]) {
 
-    this.loaderService.show();
+    //this.loaderService.show();
 
-    let options = new RequestOptions({ headers: this.contentHeaders });
+    let headers = new HttpHeaders({ 'Accept' : 'application/json', 'Content-Type': 'application/json' });
 
     if (1) {
 
       console.log(JSON.stringify(fiches));
 
-      return this.authHttp.post(this.svcDocxUrl + "/users/fiches/excel", JSON.stringify(fiches), options)
-        .map((res: Response) => {
-          let message = res.json();
+      return this.authHttp.post<BackendMessage>(this.svcDocxUrl + "/users/fiches/excel", JSON.stringify(fiches), {headers: headers})
+        .pipe(map((message: BackendMessage) => {
           if ((message.errorInd === false) && message.value) {
             this.messageService.sendMessage('success', this.labels[0].success.xlsx);
             setTimeout(function () {
@@ -151,10 +141,8 @@ export class FicheDataService {
             }.bind(this), 4500);
           }
           return message;
-        })
-        .catch((error: any) => Observable.throw(error.json().error || 'Server error')).finally(() => {
-          this.loaderService.hide()
-        });
+        }
+      ));
     }
   }
 
@@ -163,9 +151,8 @@ export class FicheDataService {
     let input = new FormData();
     input.append("file", fileToUpload);
 
-    return this.authHttp
-      .post(this.backendUrl + "/users/fiches/uploadfiche", input).map((res: Response) => {
-        let message = res.json();
+    return this.authHttp.post<BackendMessage>(this.backendUrl + "/users/fiches/uploadfiche", input)
+    .pipe(map((message: BackendMessage) => {
         if ((message.errorInd === false) && message.value) {
           this.messageService.sendMessage('success', this.labels[0].success.upload);
           setTimeout(function () {
@@ -173,62 +160,45 @@ export class FicheDataService {
           }.bind(this), 4500);
         }
         return message;
-      })
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error')).finally(() => {
-        this.loaderService.hide()
-      });
-
+      }
+    ));
   }
 
   // GET 1.
   getStoredFiches(): Observable<Fiche[]> {
 
-    this.loaderService.show();
+    //this.loaderService.show();
 
-    let options = new RequestOptions({ headers: this.contentHeaders });
+    let headers = new HttpHeaders({ 'Accept' : 'application/json', 'Content-Type': 'application/json' });
 
-    return this.authHttp.get(this.backendUrl + "/users/fiches/", options)
-      .map(this.extractData)
-      .catch(this.handleError).finally(() => {
-        this.loaderService.hide();
-      });
+    return this.authHttp.get<Fiche[]>(this.backendUrl + "/users/fiches/", {headers: headers});
+      
   }
 
   //GET 1. method 2
   getStoredIFiches(): Observable<IFiche[]> {
 
-    return this.authHttp.get(this.backendUrl + "/users/fiches/")
-      .map(response => response.json() as IFiche[])
-      .catch(this.handleError).finally(() => {
-        this.loaderService.hide()
-      });
+    return this.authHttp.get<IFiche[]>(this.backendUrl + "/users/fiches/");
+      
   }
 
   // GET 2.
   getStoredFiche(id: string, uuid: string): Observable<Fiche> {
 
-    this.loaderService.show();
+    //this.loaderService.show();
 
-    return this.authHttp.get(this.backendUrl + "/users/fiches/" + id + "/" + uuid)
-      .map(this.extractData)
-      .catch(this.handleError).finally(() => {
-        this.loaderService.hide()
-      });
+    return this.authHttp.get<Fiche>(this.backendUrl + "/users/fiches/" + id + "/" + uuid);
+
   }
 
   // GET 3.
   getFicheDocx(uuid: string) {
 
-    this.loaderService.show();
+    //this.loaderService.show();
 
     let filename = "fiche_" + uuid + ".docx";
 
-    this.authHttp.get(this.svcDocxUrl + "/users/fiches/")
-      .map(this.extractData)
-      .catch(this.handleError)
-      .finally(() => {
-        this.loaderService.hide()
-      })
+    this.authHttp.get<BackendMessage>(this.svcDocxUrl + "/users/fiches/")
       .subscribe(
       data => {
         if (!data.errorInd) {
@@ -240,23 +210,18 @@ export class FicheDataService {
           let file = new Blob([byteArray], { type: 'application/octet-stream' });
           FileSaver.saveAs(file, filename);
         }
-      })
-
+      }
+    )
   }
 
   // GET 4.
   getFicheXlsx() {
 
-    this.loaderService.show();
+    //this.loaderService.show();
 
     let filename = "fichelist.xlsx";
 
-    this.authHttp.get(this.svcDocxUrl + "/users/fiches/excel")
-      .map(this.extractData)
-      .catch(this.handleError)
-      .finally(() => {
-        this.loaderService.hide()
-      })
+    this.authHttp.get<BackendMessage>(this.svcDocxUrl + "/users/fiches/excel")
       .subscribe(
       data => {
         if (!data.errorInd) {
@@ -268,16 +233,16 @@ export class FicheDataService {
           let file = new Blob([byteArray], { type: 'application/octet-stream' });
           FileSaver.saveAs(file, filename);
         }
-      })
-
+      }
+    )
   }
 
   // GET 5.
   getFichePNG() {
 
     this.http.get(this.svcDocxUrl + "/serialnumbers")
-      .map(this.extractData)
-      .catch(this.handleError).subscribe(
+      .pipe(map(this.extractData))
+      .subscribe(
       data => {
         let byteCharacters = atob(data.barcodeImg);
         let byteNumbers = new Array(byteCharacters.length);
@@ -286,8 +251,8 @@ export class FicheDataService {
         let byteArray = new Uint8Array(byteNumbers);
         let file = new Blob([byteArray], { type: 'image/png' });
         FileSaver.saveAs(file, 'helloworld.png');
-      })
-
+      }
+    )
   }
 
   // GET 6. 
@@ -295,34 +260,27 @@ export class FicheDataService {
 
     let options = new RequestOptions({ headers: this.contentHeaders });
 
-    this.loaderService.show();
+    //this.loaderService.show();
 
-    return this.http.get(this.backendUrl + "/statistics", options)
-      .map(this.extractData)
-      .catch(this.handleError).finally(() => {
-        this.loaderService.hide()
-      });
+    return this.http.get(this.backendUrl + "/statistics", options )
+      .pipe(map(this.extractData));
   }
 
   //DELETE 1.
   deleteStoredFiche(id: string, uuid: string) {
 
-    this.loaderService.show();
+    //this.loaderService.show();
 
-    this.authHttp.delete(this.backendUrl + "/users/fiches/" + id + "/" + uuid)
-      .map((res: Response) => {
-        let message = res.json();
+    this.authHttp.delete<BackendMessage>(this.backendUrl + "/users/fiches/" + id + "/" + uuid)
+      .pipe(map((message: BackendMessage) => {
         if ((message.errorInd === false) && message.value) {
           this.messageService.sendMessage('success', this.labels[0].success.deleted);
           setTimeout(function () {
             this.messageService.clearMessage();
           }.bind(this), 4500);
         }
-      })
-      .catch(this.handleError).finally(() => {
-        this.loaderService.hide()
-      })
-      .subscribe();
+      }
+    )).subscribe();
 
   }
 
@@ -330,20 +288,6 @@ export class FicheDataService {
     let body = res.json();
     console.log("Body: ", body);
     return body;
-  }
-
-  private handleError(error: Response | any) {
-    // In a real world app, you might use a remote logging infrastructure
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error("handleError:", errMsg);
-    return Observable.throw(errMsg);
   }
 
   getFiche(uuid: string, inputData: any): Fiche {

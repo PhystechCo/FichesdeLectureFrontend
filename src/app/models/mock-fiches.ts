@@ -1,5 +1,4 @@
 import { Fiche } from "../models/fiche";
-import { Book } from "../models/book";
 
 export let MOCKFICHES = [
   new Fiche({

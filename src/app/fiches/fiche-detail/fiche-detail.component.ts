@@ -1,15 +1,15 @@
 import { Component, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { Subscription } from 'rxjs';
+
 import { Fiche } from "../../models/fiche";
-import { Book } from "../../models/book";
 import { Comment } from "../../models/comment";
 import { FicheDataService } from '../../services/fiche-data.service';
 import { AuthService } from '../../services/auth.service';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
 import { MessageService } from '../../services/message.service';
-
 import { LocaleService } from '../../services/locale.service';
+
 
 @Component({
   selector: 'app-fiche-detail',

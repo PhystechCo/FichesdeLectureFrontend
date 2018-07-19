@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { LoginComponent } from '../login/login.component';
 import { JwtService } from '../../services/jwt.service';
 import { Subscription } from 'rxjs';
 import { MessageService } from '../../services/message.service';
 import { LocaleService } from '../../services/locale.service';
+
 
 @Component({
   selector: 'app-home',
@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-  
   }
 
   ngOnDestroy() {

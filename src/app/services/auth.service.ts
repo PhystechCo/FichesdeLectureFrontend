@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Request, Response, Headers } from '@angular/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
+import { Http, Response } from '@angular/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { map} from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { AuthHttp } from '@auth0/angular-jwt';
 
-import { LoaderService } from './loader/loader.service';
-
+//import { LoaderService } from './loader/loader.service';
 import { Config } from '../app.config';
+import { BackendMessage } from '../models/backend-message';
 
 @Injectable()
 export class AuthService {
@@ -18,30 +16,27 @@ export class AuthService {
   jwtHelper: JwtHelperService = new JwtHelperService();
 
   constructor(private http: Http,
-    public authHttp: AuthHttp,
-    private loaderService: LoaderService,
+    private authHtpp: HttpClient,
+    //private loaderService: LoaderService,
     private config: Config) {
 
     this.authSvcUrl = this.config.get("authSvcUrl");
-
+      
   }
 
   login(user: string, password: string) {
 
-    this.loaderService.show();
+    //this.loaderService.show();
 
     let body = JSON.stringify({ username: user, password: password });
 
     return this.http.post(this.authSvcUrl + '/auth/login/', body)
-      .map((response: Response) => {
+      .pipe(map((response: Response) => {
         let message = response.json();
         if ((message.errorInd === false) && message.value) {
           localStorage.setItem('token', message.value);
         }
-      })
-      .finally(() => {
-        this.loaderService.hide()
-      });
+      }));
   }
 
   logout(): any {
@@ -53,21 +48,18 @@ export class AuthService {
     console.log('new username:', userinfo['username']);
     console.log('some role:', userinfo['role']);
 
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    this.loaderService.show();
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    
+    //this.loaderService.show();
 
     if (1) {
-      this.authHttp.post(this.authSvcUrl + "/admin/users/", JSON.stringify(userinfo), options)
-        .map((res: Response) => res.json())
-        .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
-        .finally(() => {
-          this.loaderService.hide()
-        })
-        .subscribe();
+      this.authHtpp.post<BackendMessage>(this.authSvcUrl + "/admin/users/", JSON.stringify(userinfo), {headers: headers})
+        .pipe(map((message: BackendMessage) => {
+          if ((message.errorInd === false) && message.value) {
+            console.log('Added new user with role: ', userinfo['role']);
+          }
+        })).subscribe();
     }
-
 
   }
 

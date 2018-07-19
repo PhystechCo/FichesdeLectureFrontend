@@ -5,6 +5,7 @@
   height: 300px;
   padding: 2% 0 0;
   margin: auto;
+  border: 1px solid whitesmoke;
 }
 .form {
   position: relative;

@@ -7,7 +7,6 @@ import { FicheDetailComponent } from './fiche-detail/fiche-detail.component';
 import { FicheHomeComponent } from './fiche-home/fiche-home.component';
 import { FicheAddComponent } from './fiche-add/fiche-add.component';
 
-import { AUTHSVC_PROVIDERS } from '../services/auth.service';
 import { LoggedInGuard } from '../logged-in.guard';
 
 export const fichesRoutes: Routes = [
